@@ -1,4 +1,0 @@
-INDEX VERSION 1.126+C:\Users\Maciek\Desktop\oop-ass3\.metadata\.plugins\org.eclipse.jdt.core
-4129599128.index
-1182308923.index
-2186860014.index
