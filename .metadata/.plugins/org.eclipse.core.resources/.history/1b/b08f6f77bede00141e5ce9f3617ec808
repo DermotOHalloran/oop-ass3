@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ReeageShark</string>
+    <string name="action_settings">Settings</string>
+    <string name="begin_the_game">Begin The Game</string>
+    <string name="pause_button">II</string>
+
+</resources>
