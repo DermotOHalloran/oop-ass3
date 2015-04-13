@@ -1,0 +1,7 @@
+package ie.dit.reeageshark;
+
+import android.view.SurfaceView;
+
+public class GamePanel extends SurfaceView {
+
+}

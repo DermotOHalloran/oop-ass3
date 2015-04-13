@@ -1,7 +1,0 @@
-package ie.dit.reeageshark;
-
-import android.app.Activity;
-
-public class Game extends Activity {
-
-}

@@ -19,8 +19,8 @@ public class Game extends Activity {
 
 	RelativeLayout Rel_main_game;
 	 
-	
-   
+	GamePanel game_panel;
+    
 	
 	OnClickListener Continue_list = new OnClickListener() {
 		
@@ -32,7 +32,7 @@ public class Game extends Activity {
 		}
 	};
 	
-OnClickListener To_Main_Menu_list = new OnClickListener() {
+	OnClickListener To_Main_Menu_list = new OnClickListener() {
 		
 		@Override
 		public void onClick(View v) {
@@ -61,6 +61,9 @@ OnClickListener To_Main_Menu_list = new OnClickListener() {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.game);
 		Rel_main_game = (RelativeLayout) findViewById(R.id.main_game_rl);
+		
+		game_panel = new GamePanel(getApplicationContext(), this);
+		Rel_main_game.addView(game_panel);
 		
 		DisplayMetrics dm = new DisplayMetrics();
 		this.getWindowManager().getDefaultDisplay().getMetrics(dm);
