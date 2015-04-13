@@ -28,6 +28,7 @@ public class Game extends Activity {
 		public void onClick(View v) {
 			PauseMenu.setVisibility(View.GONE);
 			pauseButton.setVisibility(View.VISIBLE);
+			game_panel.Pause_game=false;
 		
 		}
 	};
@@ -36,6 +37,7 @@ public class Game extends Activity {
 		
 		@Override
 		public void onClick(View v) {
+			game_panel.thread.setActive(false);
 			Game.this.finish();
 			
 		}
@@ -47,7 +49,7 @@ public class Game extends Activity {
 		public void onClick(View v) {
 			pauseButton.setVisibility(View.GONE);
 			PauseMenu.setVisibility(View.VISIBLE);
-			
+			game_panel.Pause_game=true;
 			//Pause Starts
 			
 		}
@@ -62,14 +64,24 @@ public class Game extends Activity {
 		setContentView(R.layout.game);
 		Rel_main_game = (RelativeLayout) findViewById(R.id.main_game_rl);
 		
-		game_panel = new GamePanel(getApplicationContext(), this);
-		Rel_main_game.addView(game_panel);
-		
 		DisplayMetrics dm = new DisplayMetrics();
 		this.getWindowManager().getDefaultDisplay().getMetrics(dm);
-
+		
 		final int heightS = dm.heightPixels;
 		final int widthS = dm.widthPixels;
+		
+		game_panel = new GamePanel(getApplicationContext(), this,widthS, heightS);
+		Rel_main_game.addView(game_panel);
+		
+		RelativeLayout RR = new RelativeLayout(this);
+		RR.setBackgroundResource(R.drawable.btn);
+		//RR.setGravity(Gravity.CENTER);
+		Rel_main_game.addView(RR,400,150);
+		RR.setX(0);
+		
+		
+
+		
 		
 		LayoutInflater myInflater = (LayoutInflater) getApplicationContext().getSystemService(getApplicationContext().LAYOUT_INFLATER_SERVICE);
 		pauseButton = myInflater.inflate(R.layout.pause, null, false);

@@ -15,25 +15,27 @@ public class MainThread extends Thread {
 		return active;
 	}
 
-	public void setActive(boolean active) {
-		this.active = active;
-	}
+	
 
 	public MainThread(SurfaceHolder holder, GamePanel gamePanel) {
-		this.surfaceHolder = surfaceHolder;
+		this.surfaceHolder = holder;
 		this.gamePanel = gamePanel;
-		dt = 0;	
+		dt=0;	
 		
 		
 	}
 	
+	void setActive(boolean active) {
+		this.active = active;
+	}
+	
 	@Override
-	public void run()
-	{
+	public void run() {
 		Canvas canvas;
+		
 		while(active)
 		{
-			if(!gamePanel.game_paused)
+			if(!gamePanel.Pause_game)
 			{
 				long StartDraw = System.currentTimeMillis();
 				canvas = null;
@@ -42,8 +44,8 @@ public class MainThread extends Thread {
 					canvas = this.surfaceHolder.lockCanvas();
 					synchronized(surfaceHolder)
 					{
-						gamePanel.update(dt);
-						gamePanel.draw(canvas); 
+						gamePanel.Update(dt);
+						gamePanel.Draw(canvas); 
 					}
 				}
 				finally
@@ -57,9 +59,7 @@ public class MainThread extends Thread {
 				
 				long EndDraw = System.currentTimeMillis();
 				dt = (EndDraw-StartDraw)/1000.f;
+			}
 		}
 	}
-
-	
-	
 }

@@ -16,4 +16,5 @@
 <fullyQualifiedTypeName name="android.view.SurfaceHolder"/>
 <fullyQualifiedTypeName name="ie.dit.reeageshark.GamePanel"/>
 <fullyQualifiedTypeName name="android.graphics.Canvas"/>
+<fullyQualifiedTypeName name="android.graphics.drawable.Drawable.Callback"/>
 </qualifiedTypeNameHistroy>

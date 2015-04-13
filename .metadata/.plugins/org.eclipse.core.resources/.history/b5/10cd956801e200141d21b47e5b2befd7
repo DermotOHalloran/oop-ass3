@@ -1,0 +1,164 @@
+package ie.dit.reeageshark;
+
+import android.content.Context;
+
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.Surface;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
+import java.util.ArrayList;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.Point;
+import android.media.MediaPlayer;
+import android.os.Message;
+
+
+public class GamePanel extends SurfaceView implements SurfaceHolder {
+
+	public MainThread thread;
+	public boolean game_paused;
+	private Background background;
+	public float SharkSpeed;
+	
+	public GamePanel(Context context,Game game,int ScreenWidth,int Screenheigt) {
+		super(game);
+		// TODO Auto-generated constructor stub
+		getHolder().addCallback((Callback) this);
+		thread = new MainThread(getHolder(),this);
+		background = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.game_fon), ScreenWidth, this);
+		setFocusable(true);
+		SharkSpeed = ScreenWidth/2.f;
+		this.ScreenWidth = ScreenWidth;
+		this.Screenheigt = Screenheigt;
+		
+	}
+	
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		// TODO Auto-generated method stub
+		return super.onTouchEvent(event);
+	}
+	
+	void Draw(Canvas canvas){
+		if (!Pause_game)
+			if (canvas!=null){
+				background.draw(canvas);
+			}
+	
+	}
+	
+	void update()
+	{
+		background.update(dt);
+	}
+	
+	//@Override
+	public void surfaceChanged(SurfaceHolder holder, int format, int width,
+			int height) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+	//@Override
+	public void surfaceCreated(SurfaceHolder holder) {
+		// TODO Auto-generated method stub
+		thread.setActive(true);
+		thread.start();
+		
+	}
+	
+	//@Override
+	public void surfaceDestroyed(SurfaceHolder holder) {
+		// TODO Auto-generated method stub
+		boolean retry = true;
+		while (retry) {
+				try{
+					thread.join();
+					retry=false;
+				} catch (InterruptedException e){
+					
+				}
+			
+		}
+		
+	}
+
+	@Override
+	public void addCallback(Callback callback) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Surface getSurface() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Rect getSurfaceFrame() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isCreating() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Canvas lockCanvas() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Canvas lockCanvas(Rect dirty) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void removeCallback(Callback callback) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setFixedSize(int width, int height) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setFormat(int format) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setSizeFromLayout() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setType(int type) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void unlockCanvasAndPost(Canvas canvas) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
+}

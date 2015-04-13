@@ -1,114 +1,102 @@
 package ie.dit.reeageshark;
 
+import java.util.ArrayList;
+
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Rect;
+import android.graphics.Color;
+import android.graphics.Point;
+import android.media.MediaPlayer;
+import android.os.Message;
 import android.view.MotionEvent;
-import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
-public class GamePanel extends SurfaceView implements SurfaceHolder {
+public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
 	public MainThread thread;
-	public boolean game_paused;
+	public boolean Pause_game;
+	private Background background;
+	public float SharkSpeed; 
+	public int ScreenWidth;
+	public int Screenheigt;
+	public Game game;
 	
-	public GamePanel(Game game) {
-		super(game);
-		// TODO Auto-generated constructor stub
-		getHolder().addCallback((Callback) this);
+	
+	public GamePanel(Context context, Game game,int ScreenWidth,int Screenheigt) {
+		super(context);
+		getHolder().addCallback(this);
+		this.game = game;
 		thread = new MainThread(getHolder(),this);
-		setFocusable(true);
+		background = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.game_fon), ScreenWidth, this);
 		
+		
+		
+		setFocusable(true);
+		SharkSpeed = ScreenWidth/2.f;
+		this.ScreenWidth = ScreenWidth;
+		this.Screenheigt = Screenheigt;
 	}
-	
+
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
-		// TODO Auto-generated method stub
-		return super.onTouchEvent(event);
+		if (event.getAction()==MotionEvent.ACTION_DOWN){
+			//ship.up=true;
+		}
+		if (event.getAction()==MotionEvent.ACTION_UP){
+			//ship.up=false;
+		}
+		
+		return true;
 	}
 	
-	void draw()
-	{
+	void Draw(Canvas canvas){
+		if (!Pause_game)
+			if (canvas!=null){
+				canvas.drawColor(Color.BLACK);
+				background.draw(canvas);
+			}
+				
+	}
+	
+	void Update(float dt){
+	
+		background.update(dt);
+		
 		
 	}
 	
-	void update()
-	{
-		
-	}
-
 	@Override
-	public void addCallback(Callback callback) {
+	public void surfaceChanged(SurfaceHolder holder, int format, int width,
+			int height) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Surface getSurface() {
+	public void surfaceCreated(SurfaceHolder holder) {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Rect getSurfaceFrame() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean isCreating() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public Canvas lockCanvas() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Canvas lockCanvas(Rect dirty) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void removeCallback(Callback callback) {
-		// TODO Auto-generated method stub
+		thread.setActive(true);
+		thread.start();
 		
 	}
 
 	@Override
-	public void setFixedSize(int width, int height) {
+	public void surfaceDestroyed(SurfaceHolder holder) {
 		// TODO Auto-generated method stub
+		boolean retry = true;
+		while (retry) {
+				try{
+					thread.join();
+					retry=false;
+				} catch (InterruptedException e){
+					
+				}
+			
+		}
 		
 	}
 
-	@Override
-	public void setFormat(int format) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setSizeFromLayout() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void setType(int type) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void unlockCanvasAndPost(Canvas canvas) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
 }
