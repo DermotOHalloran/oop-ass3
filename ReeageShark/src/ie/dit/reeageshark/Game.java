@@ -1,7 +1,7 @@
 package ie.dit.reeageshark;
 
 import android.app.Activity;
-import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 
 public class Game extends Activity {
@@ -20,6 +19,7 @@ public class Game extends Activity {
 	RelativeLayout Rel_main_game;
 	 
 	GamePanel game_panel;
+	MediaPlayer MainMusic;
     
 	
 	OnClickListener Continue_list = new OnClickListener() {
@@ -28,6 +28,7 @@ public class Game extends Activity {
 		public void onClick(View v) {
 			PauseMenu.setVisibility(View.GONE);
 			pauseButton.setVisibility(View.VISIBLE);
+			MainMusic.start();
 			game_panel.Pause_game=false;
 		
 		}
@@ -38,6 +39,7 @@ public class Game extends Activity {
 		@Override
 		public void onClick(View v) {
 			game_panel.thread.setActive(false);// let us start the game again
+			MainMusic.stop();
 			Game.this.finish();
 			
 		}
@@ -49,6 +51,7 @@ public class Game extends Activity {
 		public void onClick(View v) {
 			pauseButton.setVisibility(View.GONE);
 			PauseMenu.setVisibility(View.VISIBLE);
+			MainMusic.pause();
 			game_panel.Pause_game=true;
 			//Pause Starts
 			
@@ -81,7 +84,11 @@ public class Game extends Activity {
 		
 		
 
-		
+		MainMusic = MediaPlayer.create(Game.this, R.raw.music);
+		MainMusic.setVolume(0.7f, 0.7f);
+		MainMusic.setLooping(true);
+		MainMusic.start();
+
 		
 		LayoutInflater myInflater = (LayoutInflater) getApplicationContext().getSystemService(getApplicationContext().LAYOUT_INFLATER_SERVICE);
 		pauseButton = myInflater.inflate(R.layout.pause, null, false);

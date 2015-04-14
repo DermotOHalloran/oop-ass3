@@ -46,7 +46,7 @@ public class Shark {
 	{
 		if (!death)
 		{
-			canvas.drawBitmap(bitmap, (x - bitmap.getWidth()/2) +100, (y + bitmap.getHeight()/2), null);
+			canvas.drawBitmap(bitmap, (x - bitmap.getWidth()/2) +130, (y + bitmap.getHeight()/2), null);
 			
 		}
 		else

@@ -3,6 +3,7 @@ package ie.dit.reeageshark;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,6 +20,7 @@ public class MainMenu extends Activity {
 	RelativeLayout Btn;
 	ImageView ImageButton;
 	TextView txt;
+	MediaPlayer MainMenuMusic;
 	
 	
 	
@@ -54,6 +56,20 @@ public class MainMenu extends Activity {
 			}
 		});
         
+    }
+    @Override
+    protected void onStart() {
+        MainMenuMusic = MediaPlayer.create(MainMenu.this, R.raw.main);
+    	//MainMenuMusic.setVolume(0.3f, 0.3f);
+    	MainMenuMusic.start();
+    	super.onStart();
+    }
+    
+    @Override
+    protected void onStop() {
+    	if (MainMenuMusic.isPlaying())
+    		MainMenuMusic.stop();
+    	super.onStop();
     }
 
   
