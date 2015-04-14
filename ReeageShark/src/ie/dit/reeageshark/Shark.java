@@ -24,7 +24,7 @@ public class Shark {
 	float totalAnimTime = 1;
 	float numFrames;
 	
-	public Shark(Bitmap decodeResource, int i, int j, int screenWidth,int screenHeigt)
+	public Shark(Bitmap decodeResource, int i, int j, int screenWidth,int screenHeight)
 	{
 		this.bitmap = decodeResource;
 		this.x = x;
@@ -33,7 +33,7 @@ public class Shark {
 		inc=0;
 		VertSpeed = 0;
 		ScreenWidth =screenWidth;
-		ScreenHeight = screenHeigt;
+		ScreenHeight =screenHeight;
 		death=false;
 	}
 	
