@@ -1,15 +1,9 @@
 package ie.dit.reeageshark;
 
-import java.util.ArrayList;
-
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Point;
-import android.media.MediaPlayer;
-import android.os.Message;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -21,35 +15,37 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 	private Background background;
 	public float SharkSpeed; 
 	public int ScreenWidth;
-	public int Screenheigt;
+	public int ScreenHeigt;
 	public Game game;
+	private Shark shark;
 	
 	
-	public GamePanel(Context context, Game game,int ScreenWidth,int Screenheigt) {
+	public GamePanel(Context context, Game game,int ScreenWidth,int ScreenHeigt) {
 		super(context);
 		getHolder().addCallback(this);
 		this.game = game;
 		thread = new MainThread(getHolder(),this);
 		background = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.game_fon), ScreenWidth, this);
+		shark = new Shark(BitmapFactory.decodeResource(getResources(), R.drawable.player), 100, 0, ScreenWidth, ScreenHeigt);
 		
 		
 		
 		setFocusable(true);
 		SharkSpeed = ScreenWidth/2.f;
 		this.ScreenWidth = ScreenWidth;
-		this.Screenheigt = Screenheigt;
+		this.ScreenHeigt = ScreenHeigt;
 	}
 
-	@Override
+	@Override //movment of the shark if the screen is clicked the shark goes up
 	public boolean onTouchEvent(MotionEvent event) {
 		if (event.getAction()==MotionEvent.ACTION_DOWN){
-			//ship.up=true;
+			shark.up=true;
 		}
 		if (event.getAction()==MotionEvent.ACTION_UP){
-			//ship.up=false;
+			shark.up=false;
 		}
 		
-		return true;
+		return true;// make sure that touching allredy happened
 	}
 	
 	void Draw(Canvas canvas){
@@ -57,6 +53,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 			if (canvas!=null){
 				canvas.drawColor(Color.BLACK);
 				background.draw(canvas);
+				shark.draw(canvas);//drawing the shark
 			}
 				
 	}
@@ -64,6 +61,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 	void Update(float dt){
 	
 		background.update(dt);
+		shark.update(dt);//updating the shark
 		
 		
 	}

@@ -37,7 +37,7 @@ public class Game extends Activity {
 		
 		@Override
 		public void onClick(View v) {
-			game_panel.thread.setActive(false);
+			game_panel.thread.setActive(false);// let us start the game again
 			Game.this.finish();
 			
 		}
