@@ -2,15 +2,11 @@ package ie.dit.reeageshark;
 
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Random;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Point;
-
-
-import java.util.Random;
 
 public class Barier {
 	

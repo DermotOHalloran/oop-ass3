@@ -1,9 +1,12 @@
 package ie.dit.reeageshark;
 
+import java.util.ArrayList;
+
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -64,12 +67,26 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 				
 	}
 	
-	void Update(float dt){
-	
-		background.update(dt);
-		shark.update(dt);//updating the shark
-		BM.update(dt);//updating barriers
+	void Update(float dt)
+	{
 		
+		shark.update(dt);//updating the shark
+		if(!shark.death)
+		{
+			background.update(dt);
+			BM.update(dt);//updating barriers
+			for(int i = 0 ; i<BM.TopWalls.size(); i++)
+			{
+				ArrayList< Point>temp = new ArrayList<Point>(BM.TopWalls.get(i).GetArray());
+				ArrayList< Point>temp2 = new ArrayList<Point>(BM.BottomWalls.get(i).GetArray());
+				if ((shark.bump(temp.get(0), temp.get(1), temp.get(2), temp.get(3)))||
+						(shark.bump(temp2.get(0), temp2.get(1), temp2.get(2), temp2.get(3))))
+				{ 
+					shark.death = true;
+					
+				}
+			}
+		}
 		
 	}
 	
