@@ -37,7 +37,7 @@ public class Shark {
 		death=false;
 	}
 	
-	public void setBoomAnimation(ArrayList<Bitmap> animation){
+	public void setBloodAnimation(ArrayList<Bitmap> animation){
 		Blood = new ArrayList<Bitmap>(animation);
 		numFrames = Blood.size();
 	}
@@ -69,16 +69,8 @@ public class Shark {
 				VertSpeed-=ScreenHeight*dt*2;
 			y+=VertSpeed*dt;
 			
-			if (y > ScreenHeight-100)	
-			{
-				y= (ScreenHeight-101);
-				VertSpeed = 0;
-			}
-			else if(y < 1)
-			{
-				y = 2;
-				VertSpeed = 0;
-			}
+			if (y - (bitmap.getHeight() / 2)>ScreenWidth)			
+				y= 0- (bitmap.getHeight() / 2);
 			
 		}
 	}
@@ -92,6 +84,8 @@ public class Shark {
 		PointList.add(OTR);
 		PointList.add(OBR);
 		PointList.add(OBL);
+		
+		getPoint(TL,TR,BL,BR);
 		
 		for (int i = 0; i<PointList.size(); i++){ //creating the loop that goes through the array to find intersecption
 			if (BR.x>=PointList.get(i).x)
@@ -118,7 +112,7 @@ public class Shark {
 						return true;
 		}
 			
-		getPoint(TL,TR,BL,BR);
+		
 		return false;
 	}
 	

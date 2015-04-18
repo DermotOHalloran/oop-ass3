@@ -32,9 +32,10 @@ public final class R {
         public static final int btn_s=0x7f020007;
         public static final int game_fon=0x7f020008;
         public static final int ic_launcher=0x7f020009;
-        public static final int main_bg=0x7f02000a;
-        public static final int main_title=0x7f02000b;
-        public static final int player=0x7f02000c;
+        public static final int jell1y=0x7f02000a;
+        public static final int main_bg=0x7f02000b;
+        public static final int main_title=0x7f02000c;
+        public static final int player=0x7f02000d;
     }
     public static final class id {
         public static final int Begin_Text=0x7f090005;
