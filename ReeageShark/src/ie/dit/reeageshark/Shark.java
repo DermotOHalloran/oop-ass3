@@ -53,7 +53,7 @@ public class Shark {
 		{
 			int index = (int) (animTime/totalAnimTime*numFrames);
 			if (index<numFrames)
-				canvas.drawBitmap(Blood.get(index), x - bitmap.getWidth()/2, y - bitmap.getHeight()/2, null);
+				canvas.drawBitmap(Blood.get(index), (x - bitmap.getWidth()/2) + 160, y - bitmap.getHeight()/2, null);
 		}
 	}
 	public void update(float dt)//if shark crashes to the obsticles we add the animation variable to dt variable

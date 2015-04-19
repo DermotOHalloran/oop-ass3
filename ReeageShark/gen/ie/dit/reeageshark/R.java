@@ -23,11 +23,11 @@ public final class R {
     }
     public static final class drawable {
         public static final int barier=0x7f020000;
-        public static final int bonus=0x7f020001;
-        public static final int boom1=0x7f020002;
-        public static final int boom2=0x7f020003;
-        public static final int boom3=0x7f020004;
-        public static final int boom4=0x7f020005;
+        public static final int blood1=0x7f020001;
+        public static final int blood2=0x7f020002;
+        public static final int blood3=0x7f020003;
+        public static final int blood4=0x7f020004;
+        public static final int bonus=0x7f020005;
         public static final int btn=0x7f020006;
         public static final int btn_s=0x7f020007;
         public static final int game_fon=0x7f020008;
@@ -70,11 +70,10 @@ public final class R {
     }
     public static final class raw {
         public static final int bite=0x7f040000;
-        public static final int boom=0x7f040001;
+        public static final int blood=0x7f040001;
         public static final int lose=0x7f040002;
         public static final int main=0x7f040003;
         public static final int music=0x7f040004;
-        public static final int win=0x7f040005;
     }
     public static final class string {
         public static final int action_settings=0x7f060001;

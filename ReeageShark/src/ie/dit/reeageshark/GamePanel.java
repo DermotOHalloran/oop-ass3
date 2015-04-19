@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.media.MediaPlayer;
 import android.os.Message;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
@@ -39,10 +40,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 		crate = new Bonus(BitmapFactory.decodeResource(getResources(), R.drawable.bonus),-200,-200);
 		jelly = new Jelly(BitmapFactory.decodeResource(getResources(), R.drawable.jell1y),-300,-300);
 		ArrayList<Bitmap> animation = new ArrayList<Bitmap>();//animation of dying shark
-		animation.add(BitmapFactory.decodeResource(getResources(), R.drawable.boom1));
-		animation.add(BitmapFactory.decodeResource(getResources(), R.drawable.boom2));
-		animation.add(BitmapFactory.decodeResource(getResources(), R.drawable.boom3));
-		animation.add(BitmapFactory.decodeResource(getResources(), R.drawable.boom4));
+		animation.add(BitmapFactory.decodeResource(getResources(), R.drawable.blood1));
+		animation.add(BitmapFactory.decodeResource(getResources(), R.drawable.blood2));
+		animation.add(BitmapFactory.decodeResource(getResources(), R.drawable.blood3));
+		animation.add(BitmapFactory.decodeResource(getResources(), R.drawable.blood4));
 		shark.setBloodAnimation(animation);
 		
 		crate.setBarrierManager(BM);// set the barier manager for the crate class
@@ -80,7 +81,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 	
 	void Update(float dt)
 	{
-		
+		MediaPlayer blood = MediaPlayer.create(game, R.raw.blood);
 		shark.update(dt);//updating the shark
 		if(!shark.death)
 		{
@@ -102,6 +103,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 			{
 				jelly.setX(-300); // when its touched the crate goes off the screen
 				jelly.setY(-600);
+				blood.start();
 				shark.death = true;
 				Message msg = BM.game_panel.game.handler.obtainMessage();// sending message to game handler
 			    msg.what = 1; // accesing the game and the game handler
@@ -116,6 +118,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 						(shark.bump(temp2.get(0), temp2.get(1), temp2.get(2), temp2.get(3))))
 				{ 
 					shark.death = true;
+					blood.start();
 					Message msg = BM.game_panel.game.handler.obtainMessage();// sending message to game handler
 				    msg.what = 1; // accesing the game and the game handler
 				    BM.game_panel.game.handler.sendMessage(msg); // message 1 is death

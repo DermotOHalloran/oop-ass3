@@ -31,6 +31,7 @@ public class Game extends Activity {
 	TextView txt;
 	GamePanel game_panel;
 	MediaPlayer MainMusic;
+	MediaPlayer LooseMusic;
 	int get_crate=0;
 	int score=0;
     
@@ -52,7 +53,7 @@ public class Game extends Activity {
 						handler.sendMessage(msg);
 						
 					}
-				}, 3000); // 3 seconds delay after dying 
+				}, 2000); // 3 seconds delay after dying 
 			}
 			if (msg.what==LOSE){
 				i_lose();
@@ -79,7 +80,14 @@ public class Game extends Activity {
 		@Override
 		public void onClick(View v) {
 			game_panel.thread.setActive(false);// let us start the game again
-			MainMusic.stop();
+			if (MainMusic.isPlaying())
+			{
+				MainMusic.stop();
+			}
+			if (LooseMusic.isPlaying())
+			{
+				LooseMusic.stop();
+			}
 			Game.this.finish();
 			
 		}
@@ -131,6 +139,7 @@ public class Game extends Activity {
 		
 
 		MainMusic = MediaPlayer.create(Game.this, R.raw.music);
+		LooseMusic = MediaPlayer.create(Game.this, R.raw.lose);
 		MainMusic.setVolume(0.7f, 0.7f);
 		MainMusic.setLooping(true);
 		MainMusic.start();
@@ -187,10 +196,9 @@ public class Game extends Activity {
 
 	protected void i_lose() {
 		// TODO Auto-generated method stub
-		if (MainMusic.isPlaying()) // stops music and starts the loosing music then the loosing dialog shows up
-			MainMusic.stop();
-		MainMusic = MediaPlayer.create(Game.this, R.raw.lose);
-		MainMusic.start();
+		 
+		MainMusic.stop();// stops music and starts the loosing music then the loosing dialog shows up
+		LooseMusic.start();
 		pauseButton.setVisibility(View.GONE);
 		game_panel.Pause_game=true;// pasue the game
 		LoseDialog.setVisibility(View.VISIBLE);
@@ -216,7 +224,7 @@ public class Game extends Activity {
 		// TODO Auto-generated method stub
 		if (MainMusic.isPlaying()) // stops music and starts the loosing music then the loosing dialog shows up
 			MainMusic.stop();
-		MainMusic = MediaPlayer.create(Game.this, R.raw.win);
+		//MainMusic = MediaPlayer.create(Game.this, R.raw.win);
 		MainMusic.start();
 		pauseButton.setVisibility(View.GONE);
 		game_panel.Pause_game=true;// pasue the game
