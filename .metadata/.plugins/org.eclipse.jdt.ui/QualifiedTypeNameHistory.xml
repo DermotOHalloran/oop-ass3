@@ -17,4 +17,5 @@
 <fullyQualifiedTypeName name="ie.dit.reeageshark.GamePanel"/>
 <fullyQualifiedTypeName name="android.graphics.Canvas"/>
 <fullyQualifiedTypeName name="android.graphics.drawable.Drawable.Callback"/>
+<fullyQualifiedTypeName name="android.os.Message"/>
 </qualifiedTypeNameHistroy>

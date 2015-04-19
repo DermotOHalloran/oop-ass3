@@ -7,5 +7,7 @@
     <string name="pause_button">II</string>
     <string name="menu">Go To The Main Menu</string>
     <string name="conti">Continue The Adventure</string>
+    <string name="lose">You Lose !</string>
+    <string name="main_menu">Go Back To Main Menu</string>
 
 </resources>
