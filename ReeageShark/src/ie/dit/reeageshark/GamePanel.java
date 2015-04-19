@@ -8,6 +8,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.os.Message;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -29,7 +30,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 	public GamePanel(Context context, Game game,int ScreenWidth,int ScreenHeight) {
 		super(context);
 		getHolder().addCallback(this);
-		this.game = game;
+		this.game = game;// initialazing the game panel
 		thread = new MainThread(getHolder(),this);
 		background = new Background(BitmapFactory.decodeResource(getResources(), R.drawable.game_fon), ScreenWidth, this);
 		BM = new Barriermanager(BitmapFactory.decodeResource(getResources(), R.drawable.barier), this);
@@ -91,13 +92,20 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 			{
 				crate.setX(-200); // when its touched the crate goes off the screen
 				crate.setY(-200);
+				Message msg = BM.game_panel.game.handler.obtainMessage();// sending message to game handler
+			    msg.what = 0; // accesing the game and the game handler 
+			    BM.game_panel.game.handler.sendMessage(msg); // sending the message 0 which tell us that we got a point
 			}
 			jelly.update(dt);
 			ArrayList<Point> jelly_point = new ArrayList<Point>(jelly.GetArray());
 			if (shark.bump(jelly_point.get(0), jelly_point.get(1), jelly_point.get(2), jelly_point.get(3)))
 			{
 				jelly.setX(-300); // when its touched the crate goes off the screen
-				jelly.setY(-300);
+				jelly.setY(-600);
+				shark.death = true;
+				Message msg = BM.game_panel.game.handler.obtainMessage();// sending message to game handler
+			    msg.what = 1; // accesing the game and the game handler
+			    BM.game_panel.game.handler.sendMessage(msg);
 			}
 			}
 			for(int i = 0 ; i<BM.TopWalls.size(); i++)
@@ -108,6 +116,9 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 						(shark.bump(temp2.get(0), temp2.get(1), temp2.get(2), temp2.get(3))))
 				{ 
 					shark.death = true;
+					Message msg = BM.game_panel.game.handler.obtainMessage();// sending message to game handler
+				    msg.what = 1; // accesing the game and the game handler
+				    BM.game_panel.game.handler.sendMessage(msg); // message 1 is death
 					
 				}
 			}

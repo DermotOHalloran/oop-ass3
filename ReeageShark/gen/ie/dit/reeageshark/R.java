@@ -36,36 +36,41 @@ public final class R {
         public static final int main_bg=0x7f02000b;
         public static final int main_title=0x7f02000c;
         public static final int player=0x7f02000d;
+        public static final int sad_shark=0x7f02000e;
+        public static final int sad_shark2=0x7f02000f;
     }
     public static final class id {
-        public static final int Begin_Text=0x7f090005;
-        public static final int PauseImg=0x7f090006;
-        public static final int Pause_Image=0x7f090007;
-        public static final int Rel=0x7f090009;
-        public static final int RelativeLayout=0x7f090001;
-        public static final int action_settings=0x7f09000e;
-        public static final int butto_start=0x7f090003;
-        public static final int continue_g=0x7f09000b;
-        public static final int go_mainmenu=0x7f09000d;
-        public static final int imCont=0x7f09000a;
-        public static final int imageView=0x7f090002;
-        public static final int image_butto=0x7f090004;
+        public static final int Begin_Text=0x7f09000b;
+        public static final int PauseImg=0x7f09000c;
+        public static final int Pause_Image=0x7f09000d;
+        public static final int Rel=0x7f090001;
+        public static final int RelativeLayout=0x7f090007;
+        public static final int action_settings=0x7f090010;
+        public static final int butto_start=0x7f090009;
+        public static final int continue_g=0x7f09000f;
+        public static final int go_mainmenu=0x7f090006;
+        public static final int imCont=0x7f09000e;
+        public static final int imageView=0x7f090008;
+        public static final int imageView1=0x7f090003;
+        public static final int imageView2=0x7f090004;
+        public static final int image_butto=0x7f09000a;
         public static final int main_game_rl=0x7f090000;
-        public static final int textView1=0x7f090008;
-        public static final int toMain=0x7f09000c;
+        public static final int textView1=0x7f090002;
+        public static final int toMain=0x7f090005;
     }
     public static final class layout {
         public static final int game=0x7f030000;
-        public static final int main=0x7f030001;
-        public static final int pause=0x7f030002;
-        public static final int pause_menu=0x7f030003;
+        public static final int lose=0x7f030001;
+        public static final int main=0x7f030002;
+        public static final int pause=0x7f030003;
+        public static final int pause_menu=0x7f030004;
     }
     public static final class menu {
         public static final int main_menu=0x7f080000;
     }
     public static final class raw {
-        public static final int boom=0x7f040000;
-        public static final int coin=0x7f040001;
+        public static final int bite=0x7f040000;
+        public static final int boom=0x7f040001;
         public static final int lose=0x7f040002;
         public static final int main=0x7f040003;
         public static final int music=0x7f040004;
@@ -76,6 +81,8 @@ public final class R {
         public static final int app_name=0x7f060000;
         public static final int begin_the_game=0x7f060002;
         public static final int conti=0x7f060005;
+        public static final int lose=0x7f060006;
+        public static final int main_menu=0x7f060007;
         public static final int menu=0x7f060004;
         public static final int pause_button=0x7f060003;
     }
