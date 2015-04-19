@@ -1,6 +1,4 @@
-package ie.dit.reggaeshark;
-
-import ie.dit.reeageshark.R;
+package ie.dit.reeageshark;
 
 import java.util.ArrayList;
 
