@@ -34,7 +34,7 @@ public class Game extends Activity {
 	int get_crate=0;
 	int score=0;
     
-	final Handler handler = new Handler() // catching a message and doing assaigned function
+	final Handler handler = new Handler() // catching a message and performing an assigned function
 	{
 		@Override
 		public void handleMessage(Message msg) {
@@ -141,8 +141,10 @@ public class Game extends Activity {
 		pauseButton.setX(widthS - 245);
 		pauseButton.setY(0);
 		Rel_main_game.addView(pauseButton);
+		
+		ImageView PauseImage = (ImageView) pauseButton.findViewById(R.id.Pause_Image);
+		pauseButton.setOnTouchListener(new ButtonTouch(PauseImage));
 		pauseButton.setOnClickListener(Pausa_click);
-		pauseButton.setOnClickListener(Pausa_click);pauseButton.setOnClickListener(Pausa_click);pauseButton.setOnClickListener(Pausa_click);
 		pauseButton.getLayoutParams().height=250;
 		pauseButton.getLayoutParams().width=250;
 		
@@ -152,17 +154,36 @@ public class Game extends Activity {
 		
 		ImageView Cont = (ImageView)PauseMenu.findViewById(R.id.imCont);
 		ImageView MainMenuTo = (ImageView)PauseMenu.findViewById(R.id.toMain);
+		Cont.setOnTouchListener(new ButtonTouch(Cont));
 		Cont.setOnClickListener(Continue_list);
+		MainMenuTo.setOnTouchListener(new ButtonTouch(MainMenuTo));
 		MainMenuTo.setOnClickListener(To_Main_Menu_list);
+		
 		
 		LoseDialog= myInflater.inflate(R.layout.lose, null, false); // Looosing xml dialog window
 		Rel_main_game.addView(LoseDialog);
 		ImageView Lose_to_main = (ImageView) LoseDialog.findViewById(R.id.toMain);
+		TextView txt2 = (TextView) findViewById(R.id.youLose);
+		TextView txt3 = (TextView) findViewById(R.id.go_mainmenu);
+        txt2.setTypeface(Custom);
+        txt3.setTypeface(Custom);
+        Lose_to_main.setOnTouchListener(new ButtonTouch(Lose_to_main));
 		Lose_to_main.setOnClickListener(To_Main_Menu_list);
 		LoseDialog.setVisibility(View.GONE);
+		
+		
 	}
 
-
+	@Override
+	public void onBackPressed() {
+		// TODO Auto-generated method stub
+			pauseButton.setVisibility(View.GONE);
+			PauseMenu.setVisibility(View.VISIBLE);
+			MainMusic.pause();
+			game_panel.Pause_game=true;
+				//Pause Starts
+	}
+	
 
 	protected void i_lose() {
 		// TODO Auto-generated method stub
@@ -193,7 +214,13 @@ public class Game extends Activity {
 
 	private void i_win() {
 		// TODO Auto-generated method stub
-		
+		if (MainMusic.isPlaying()) // stops music and starts the loosing music then the loosing dialog shows up
+			MainMusic.stop();
+		MainMusic = MediaPlayer.create(Game.this, R.raw.win);
+		MainMusic.start();
+		pauseButton.setVisibility(View.GONE);
+		game_panel.Pause_game=true;// pasue the game
+		LoseDialog.setVisibility(View.VISIBLE);
 	}
 
 }

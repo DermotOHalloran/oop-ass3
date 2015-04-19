@@ -5,10 +5,8 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -37,14 +35,10 @@ public class MainMenu extends Activity {
         Typeface Custom = Typeface.createFromAsset(getAssets(), "font.ttf");
         txt.setTypeface(Custom);
         
-        Btn.setOnTouchListener(new OnTouchListener() {
+        Btn.setOnTouchListener(new ButtonTouch(ImageButton));
+        
 			
-			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				// TODO Auto-generated method stub
-				return false;
-			}
-		});
+		
 		
 		Btn.setOnClickListener(new OnClickListener() {
 			

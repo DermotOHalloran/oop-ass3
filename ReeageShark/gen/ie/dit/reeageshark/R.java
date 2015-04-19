@@ -51,12 +51,12 @@ public final class R {
         public static final int go_mainmenu=0x7f090006;
         public static final int imCont=0x7f09000e;
         public static final int imageView=0x7f090008;
-        public static final int imageView1=0x7f090003;
-        public static final int imageView2=0x7f090004;
+        public static final int imageView1=0x7f090002;
+        public static final int imageView2=0x7f090003;
         public static final int image_butto=0x7f09000a;
         public static final int main_game_rl=0x7f090000;
-        public static final int textView1=0x7f090002;
         public static final int toMain=0x7f090005;
+        public static final int youLose=0x7f090004;
     }
     public static final class layout {
         public static final int game=0x7f030000;
