@@ -1,4 +1,4 @@
-package ie.dit.reeageshark;
+package ie.dit.reggaeshark;
 
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;

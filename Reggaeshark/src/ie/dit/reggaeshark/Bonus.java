@@ -1,4 +1,4 @@
-package ie.dit.reeageshark;
+package ie.dit.reggaeshark;
 
 import java.util.ArrayList;
 import java.util.Random;

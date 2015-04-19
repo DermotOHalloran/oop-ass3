@@ -1,5 +1,6 @@
-package ie.dit.reeageshark;
+package ie.dit.reggaeshark;
 
+import ie.dit.reeageshark.R;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;

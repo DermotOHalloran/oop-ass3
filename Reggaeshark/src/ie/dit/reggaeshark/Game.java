@@ -1,5 +1,6 @@
-package ie.dit.reeageshark;
+package ie.dit.reggaeshark;
 
+import ie.dit.reeageshark.R;
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.Typeface;

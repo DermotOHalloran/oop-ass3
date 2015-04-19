@@ -1,4 +1,4 @@
-package ie.dit.reeageshark;
+package ie.dit.reggaeshark;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
